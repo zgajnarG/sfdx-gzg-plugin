@@ -15,7 +15,7 @@ export default class create extends SfdxCommand {
 
   public static args = [{ name: 'file' }];
 
-  protected static requiresUsername = true;
+  protected static requiresUsername = false;
 
   // Comment this out if your command does not support a hub org username
   protected static supportsDevhubUsername = false;
