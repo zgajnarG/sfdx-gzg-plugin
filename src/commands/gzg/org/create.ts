@@ -43,13 +43,13 @@ export default class create extends SfdxCommand {
       result.orgId = resultCreateScratch.result.orgId;
       result.username = resultCreateScratch.result.username;
 
-      if (resultPushToScratch.success) {
-        const resultPasswordUser: Task<createUserPasswordData> = await orgHandler.createUserPassword();
-        result.password = resultPasswordUser.result.password;
+      const resultPasswordUser: Task<createUserPasswordData> = await orgHandler.createUserPassword();
+      result.password = resultPasswordUser.result.password;
 
-        if (this.flags.permsetname) await orgHandler.addUserPermissionSet(this.flags.permsetname);
-        if (this.flags.open) await orgHandler.openScratch();
+      if (resultPushToScratch.success) {
+        if (this.flags.permsetname) await orgHandler.addUserPermissionSet(this.flags.permsetname as string);
       }
+      if (this.flags.open) await orgHandler.openScratch();
     }
     return result;
   }
