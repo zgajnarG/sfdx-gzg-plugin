@@ -31,6 +31,15 @@ export default class create extends SfdxCommand {
     help: flags.help({}),
   };
 
+  public static examples = [
+    `$ sfdx gzg:org:create -n OrgTest -s PermsetName
+      Create a scratch with Orgtest alias and push automatically sources into it. Also add a permission set 'PermsetName' to the user.
+
+    `,
+    `$ sfdx gzg:org:create -n OrgTest -o
+      Create a scratch with Orgtest alias and push automatically sources into it. Open the scratch org when it's over .`
+  ];
+
   public async run(): Promise<Result> {
     const orgName: string = this.flags.name as string;
     const orgHandler: OrgHandler = new OrgHandler(this.ux);

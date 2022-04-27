@@ -22,6 +22,12 @@ export default class create extends SfdxCommand {
     help: flags.help({}),
   };
 
+  public static examples = [
+    `$ sfdx gzg:translate:create  -p "en_US:Hello" -s "fr:Salut" -c "NewWithPlugin"
+      Create a custom label named Hello in english and add traduction in french. Add a category named NewWithPlugin to the custom label.
+    `,
+  ];
+
   public async run(): Promise<boolean> {
     const handler = new TranslationHandler(
       this.ux,
