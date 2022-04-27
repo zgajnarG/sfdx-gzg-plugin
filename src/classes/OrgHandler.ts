@@ -2,7 +2,7 @@
 import * as child from 'child_process';
 import * as util from 'util';
 import { UX } from '@salesforce/command';
-import ConsoleInterface , {ConsoleTask} from '../interfaces/console';
+import ConsoleInterface, { ConsoleTask } from '../interfaces/console';
 import Task from '../interfaces/taskResult';
 import {
   resultCreateOrg,
@@ -83,7 +83,7 @@ export default class OrgHandler {
       const task: Promise<ConsoleInterface> = exec(query) as Promise<ConsoleInterface>;
 
       const resultCreate: ConsoleTask = await this.console.lunchTask(waitingMessage, task, 'done');
-      result.result = resultCreate.stdout ?  resultCreate.stdout :resultCreate.stderr;
+      result.result = resultCreate.stdout ? resultCreate.stdout : resultCreate.stderr;
       if (!resultCreate.success) {
         this.console.stopSpinner(errorMessage);
       } else {
