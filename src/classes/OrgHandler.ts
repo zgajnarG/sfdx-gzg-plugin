@@ -83,7 +83,7 @@ export default class OrgHandler {
       const task: Promise<ConsoleInterface> = exec(query) as Promise<ConsoleInterface>;
 
       const resultCreate: ConsoleTask = await this.console.lunchTask(waitingMessage, task, 'done');
-      result.result = resultCreate.stdout ?? resultCreate.stderr;
+      result.result = resultCreate.stdout ?  resultCreate.stdout :resultCreate.stderr;
       if (!resultCreate.success) {
         this.console.stopSpinner(errorMessage);
       } else {
